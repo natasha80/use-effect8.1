@@ -14,8 +14,10 @@ const List = (props) => {
                 setLoading(false)
             })
             .catch(err => console.log(err))
+            .finally(() => console.log('Request error'))
     }, []);
 
+    if (!isLoading) return null;
     return (
         <div className="List">
            {isLoading ? <div>Loading...</div> : users.map(user => <div key={user.id} className="Person" id={user.id} onClick={() => onDetails(user)}>{user.name}</div>)}
